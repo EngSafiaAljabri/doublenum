@@ -1,0 +1,91 @@
+<!DOCTYPE html dir='rtl' lang='ar'>
+<html lang="en"  style="background-color:powderblue;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة مضاعفة البرتقالات</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .orange-image {
+            width: 50px; /* يمكنك تغيير الحجم حسب الحاجة */
+            height: auto;
+            margin: 5px;
+        }
+
+
+    </style>
+</head>
+<body class="bg-base-200">
+    <div id="app" class="container mx-auto my-8">
+        <div class="grid grid-cols-1 gap-4">
+            <div class="max-w-md mx-auto">
+                <div class="flex justify-center mb-8">
+                    <h1 class="text-2xl font-bold">لعبة مضاعفة البرتقالات</h1>
+                </div>
+                <div class="flex justify-center mb-8">
+                    <button @click="resetGame" class="btn btn-primary">إعادة الضبط</button>
+                </div>
+              <h2  align="center">  أختر الرقم:</h2><br/>
+                <div class="flex justify-center mb-8">
+                    <button @click="selectNumber(5)" class="btn btn-info">٥</button>
+                    <button @click="selectNumber(4)" class="btn btn-info">٤</button>
+                    <button @click="selectNumber(3)" class="btn btn-info">٣</button>
+                    <button @click="selectNumber(2)" class="btn btn-info">٢</button>
+                    <button @click="selectNumber(1)" class="btn btn-info">١</button>
+                </div>
+                <div class="flex justify-center mb-8">
+                    <button @click="doubleOranges" class="btn btn-secondary">ضاعف</button>
+                </div>
+                <div class="flex justify-center mb-8">
+                    <div v-if="oranges === 0" class="text-2xl font-bold">لا يوجد برتقالات!</div>
+                    <div v-else>
+                        
+                        <div class="flex flex-wrap justify-center">
+                            <img v-for="index in oranges" :key="index" src="https://a.top4top.io/p_32003ii5p1.png" alt="Orange" class="orange-image">
+                        </div>
+                      
+                    </div>
+
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+     <h2  align="center">
+                                          تصميم : م: صفية الجابري<br/>
+معلمة المادة : الاستاذه شمساء المقبالي<br/>
+الطالب: راشد صقر<br/>
+الصف: 1/3
+
+                                        </h2>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                oranges: 0,
+                selectedNumber: 1
+            },
+            methods: {
+                selectNumber(number) {
+                    this.selectedNumber = number;
+                },
+                doubleOranges() {
+                    this.oranges = this.selectedNumber * 2; // تبسيط الدالة
+                },
+                resetGame() {
+                    this.oranges = 0;
+                    this.selectedNumber = 1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
